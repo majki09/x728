@@ -118,8 +118,7 @@ while True:
     SOC,SOC_STATUS = readSoc(bus, SOC_STATUS_LOW)
 
 
-    import web_pdb; web_pdb.set_trace()
-    
+    # import web_pdb; web_pdb.set_trace()
 
     if ( SHUTDOWN_TRIGGER in ["AC Power", "All"] ):
         if ( AC_STATUS == "GOOD" ):
@@ -174,5 +173,3 @@ while True:
                 break
 
     time.sleep(10)
-
-    # GPIO.cleanup()
