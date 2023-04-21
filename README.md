@@ -1,5 +1,5 @@
-This shell script and python file is tested only on Raspberry pi OS..
+## This is actually forked from https://github.com/geekworm-com/x728 with some nice mods.
 
-We refactored the script file of X728, hope it will be easier to use
+This shell script and python file is tested only on Raspberry pi OS..
 
 User guide: https://wiki.geekworm.com/X728-Software
