@@ -1,14 +1,9 @@
 @startuml
 
-|#CCFFCC|
-
-
 start
-
 repeat
     :get power status;
     switch (""SHUTDOWN_TRIGGER in"")
-'    if (SHUTDOWN_TRIGGER in "AC Power", "All") then (yes)
     case (""["AC Power", "All"]"")
         if (""AC_STATUS == "GOOD""") then (yes)
             if (""AC_LOSS_TIME > 0"") then (yes)
@@ -37,7 +32,6 @@ repeat
                 </code>;
             endif
         endif
-'    elseif (SHUTDOWN_TRIGGER in "SoC", "All") then (yes)
     case (""["Soc", "All"]"")
         if (""SOC <= SOC_THRESHOLD"") then (yes)
             #tomato:=Shutdown in progress
@@ -47,7 +41,6 @@ repeat
             **safeShutdown**
             </code>;
         endif
-'    elseif (SHUTDOWN_TRIGGER in "Voltage", "All") then (yes)
     case (""["Voltage", "All"]"")
         if (""VOLTAGE <= VOLTAGE_THRESHOLD"") then (yes)
             #tomato:=Shutdown in progress
@@ -57,7 +50,6 @@ repeat
             **safeShutdown**
             </code>;
         endif
-'    endif
     endswitch
     :""time.sleep(10)"";
 repeat while;
