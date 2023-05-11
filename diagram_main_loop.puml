@@ -1,0 +1,58 @@
+@startuml
+
+start
+repeat
+    :get power status;
+    switch (""SHUTDOWN_TRIGGER in"")
+    case (""["AC Power", "All"]"")
+        if (""AC_STATUS == "GOOD""") then (yes)
+            if (""AC_LOSS_TIME > 0"") then (yes)
+                :=AC Power restored,
+                ==shutdown cancelled
+                ....
+                <code>
+                AC_LOSS_TIME = 0
+                </code>;
+            endif
+        else
+            if (""AC_LOSS_TIME == 0"")) then (yes)
+                :=AC Power lost
+                ....
+                <code>
+                AC_LOSS_TIME = time.time()
+                soundBuzzer(times=1)
+                </code>;
+            endif
+            if (""time.time() >= AC_LOSS_TIME+WAIT_SECONDS"") then (yes)
+                #tomato:=Shutdown in progress
+                ....
+                <code>
+                soundBuzzer(times=1)
+                **safeShutdown**
+                </code>;
+            endif
+        endif
+    case (""["Soc", "All"]"")
+        if (""SOC <= SOC_THRESHOLD"") then (yes)
+            #tomato:=Shutdown in progress
+            ....
+            <code>
+            soundBuzzer(times=2)
+            **safeShutdown**
+            </code>;
+        endif
+    case (""["Voltage", "All"]"")
+        if (""VOLTAGE <= VOLTAGE_THRESHOLD"") then (yes)
+            #tomato:=Shutdown in progress
+            ....
+            <code>
+            soundBuzzer(times=3)
+            **safeShutdown**
+            </code>;
+        endif
+    endswitch
+    :""time.sleep(10)"";
+repeat while;
+
+
+@enduml
