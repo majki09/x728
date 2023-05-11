@@ -9,16 +9,17 @@ import sys
 
 
 # Start Config
-SHUTDOWN_TRIGGER = "All" # (AC Power,SoC,Voltage,All) - determines what settings will trigger a shutdown.
+SHUTDOWN_TRIGGER = "SoC" # (AC Power,SoC,Voltage,All) - determines what settings will trigger a shutdown.
 AC_LOSS_WAIT_MINUTES = 15 # Number of minutes after power loss before shutdown is issued
 AC_LOSS_TIME = 0 # Time of AC loss moment (epoch)
-SOC_THRESHOLD = 20 # Shutdown will occur when SoC drops below the stated percentage
+SOC_THRESHOLD = 10 # Shutdown will occur when SoC drops below the stated percentage
 SOC_STATUS_LOW = 20 # Low SoC warning below this level
-VOLTAGE_THRESHOLD = 3.20 # Shutdown will occur when voltage drops below the stated percentage
+VOLTAGE_THRESHOLD = 3.40 # Shutdown will occur when voltage drops below the stated percentage
 VOLTAGE_STATUS_LOW = 3.20 # Low valtage warning below this level
 TEST_MODE = False # Will show extra output and will not perform shutdown when set to True, normal opperation TEST_MODE = False
 BUZZER_ON = True # Buzzer will beep when power is initially lost and right before shutdown, when set to True
 BUZZER_SECONDS = 0.5 # Number of seconds the buzzer will sound
+POLLING_TIME = 30 # Number of seconds between each main loop iteration
 
 # End Config
 WAIT_SECONDS = AC_LOSS_WAIT_MINUTES * 60
@@ -172,4 +173,4 @@ while True:
                 print(f"{date_time} : Started in Test Mode. No actual shutdown will occur, program will exit.")
                 break
 
-    time.sleep(10)
+    time.sleep(POLLING_TIME)
