@@ -10,29 +10,25 @@ User guide: https://wiki.geekworm.com/X728-Software
 ## As systemd service
 Copy *x728.service* file to services folder and optionally change the *x728* script path.
 
-`
+```
 cp x728.service /lib/systemd/system/
 sudo chmod 644 /lib/systemd/system/x728.service
 chmod +x x728v2-asd.py
 sudo systemctl daemon-reaload
 sudo systemctl enable x728.service
 sudo systemctl start x728.service
-`
+```
 
 From now on the *x728v2-asd.py* should start automatically with system boot and run in the background.
 
 Logs can be found with
 
-`
-journalctl -u x728.service
-`
+` journalctl -u x728.service `
 
 ## As auto-run entry in *rc.local*
 Add this line to */etc/rc.local/*
 
-`
-python3 /home/pi/x728/x728v2-asd.py &
-`
+` python3 /home/pi/x728/x728v2-asd.py & `
 
 From now on the *x728v2-asd.py* should start automatically with system boot and run in the background.
 

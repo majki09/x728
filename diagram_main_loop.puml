@@ -34,24 +34,28 @@ repeat
         endif
     case (""["Soc", "All"]"")
         if (""SOC <= SOC_THRESHOLD"") then (yes)
-            #tomato:=Shutdown in progress
-            ....
-            <code>
-            soundBuzzer(times=2)
-            **safeShutdown**
-            </code>;
+            if (Battery is not charging) then (yes)
+                #tomato:=Shutdown in progress
+                ....
+                <code>
+                soundBuzzer(times=2)
+                **safeShutdown**
+                </code>;
+            endif
         endif
     case (""["Voltage", "All"]"")
         if (""VOLTAGE <= VOLTAGE_THRESHOLD"") then (yes)
-            #tomato:=Shutdown in progress
-            ....
-            <code>
-            soundBuzzer(times=3)
-            **safeShutdown**
-            </code>;
+            if (Battery is not charging) then (yes)
+                #tomato:=Shutdown in progress
+                ....
+                <code>
+                soundBuzzer(times=3)
+                **safeShutdown**
+                </code>;
+            endif
         endif
     endswitch
-    :""time.sleep(10)"";
+    :""time.sleep(POLLING_TIME)"";
 repeat while;
 
 
