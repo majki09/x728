@@ -1,0 +1,11 @@
+[Unit]
+Description=x728 power management
+After=multi-user.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/python3 /home/pi/x728/x728v2-asd.py
+Restart=on-abort
+
+[Install]
+WantedBy=multi-user.target
