@@ -124,7 +124,6 @@ log.info(f"AC Power \t {AC_STATUS}")
 log.info(f"Battery SoC \t {SOC_STATUS} \t {str(round(SOC,2))}%")
 log.info(f"Battery Voltage \t {VOLTAGE_STATUS} \t {str(round(VOLTAGE,2))}V")
 log.info(f"Battery Current \t \t {str(round(CURRENT,3))}A")
-log.info(f"Battery Current \t \t {str(round(CURRENT,3))}A")
 
 if ( TEST_MODE ):
     log.info(date_time + " : Started in Test Mode, No actual shutdown will occur, program will exit after shutdown triggered.")
